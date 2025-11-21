@@ -14,14 +14,14 @@ viewer = SimplePDFViewer(fd)
 
 # print(viewer.metadata)
 
-viewer.navigate(61)
+viewer.navigate(915)
 viewer.render()
 # print(viewer.canvas.text_content)
 # print(viewer.canvas.strings)
 
-print("===========================================================================")
-print("===========================================================================")
-print("===========================================================================")
+# print("===========================================================================")
+# print("===========================================================================")
+# print("===========================================================================")
 
 text_content_lines = viewer.canvas.text_content.split('\n')
 
@@ -84,7 +84,7 @@ def find_bdc():
             print("index + 9", text_content_lines[index + 9])
             print("index + 10", text_content_lines[index + 10])
 
-find_bdc()
+# find_bdc()
 
 def print_new_paragraph():
     for index, line in enumerate(text_content_lines):
@@ -162,3 +162,29 @@ def run_page():
 # print("====================================================")
 
 # print(sorted(page_59.Resources.Font.keys()))
+
+footnote = False
+
+for index, line in enumerate(text_content_lines):
+    if footnote == True:
+        print(index, line)
+    # if footnote == True and line == "/Span <<>> BDC":
+    #     print('\n')
+    #     print(index + 0, text_content_lines[index + 0])
+    #     print(index + 1, text_content_lines[index + 1])
+    #     print(index + 2, text_content_lines[index + 2])
+    #     print(index + 3, text_content_lines[index + 3])
+    #     print(index + 4, text_content_lines[index + 4])
+    #     print(index + 5, text_content_lines[index + 5])
+    #     print(index + 6, text_content_lines[index + 6])
+    #     print(index + 7, text_content_lines[index + 7])
+    #     print(index + 8, text_content_lines[index + 8])
+    #     print(index + 9, text_content_lines[index + 9])
+    #     print(index + 10, text_content_lines[index + 10])
+    else:
+        if "  " in line:
+            print('\n')
+            print(line)
+            print(sorted(list(set(list(line)))))
+            if sorted(list(set(list(line)))) == [' ', '(', ')', 'T', 'j']:
+                footnote = True
